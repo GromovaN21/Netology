@@ -5,22 +5,26 @@ create table if not exists сollections (
 	year integer not null
 	);
 	
-create table if not exists Albums (
+create table if not exists albums (
 	id serial primary key,
 	name varchar(60) not null,
-	year integer not null
+	year integer not null,
+	CHECK (CHAR_LENGTH(name) <= 60)
 	);
 
 create table if not exists songs (
 	id serial primary key,
 	albums_id INTEGER NOT NULL REFERENCES albums(id),
 	name varchar(60) not null,
-	duration integer not null
+	duration integer not null,
+	CHECK (duration > 0),
+	CHECK (CHAR_LENGTH(name) <= 60)
 	);
 
 create table if not exists singers (
 	id serial primary key,
-	name varchar(60) not null
+	name varchar(60) not null,
+	UNIQUE (name)
 	);
 	
 create table if not exists genres (
@@ -28,46 +32,33 @@ create table if not exists genres (
 	name varchar(60) not null
 	);
 	
-create table if not exists singerscollections (
-	id serial primary key,
-	collections_id INTEGER NOT NULL REFERENCES сollections(id),
-	singer_id INTEGER NOT NULL REFERENCES singers(id)
-	);
-	
 create table if not exists songscollections (
-	id serial primary key,
 	collections_id INTEGER NOT NULL REFERENCES сollections(id),
 	songs_id INTEGER NOT NULL REFERENCES songs(id)
 	);
 	
 create table if not exists singersalbums (
-	id serial primary key,
 	albums_id INTEGER NOT NULL REFERENCES albums(id),
 	singers_id INTEGER NOT NULL REFERENCES singers(id)
 	);
 
-create table if not exists songsalbums (
-	id serial primary key,
-	albums_id INTEGER NOT NULL REFERENCES albums(id),
-	songs_id INTEGER NOT NULL REFERENCES songs(id)
-	);
 
 create table if not exists singersgenres (
-	id serial primary key,
 	singer_id INTEGER NOT NULL REFERENCES singers(id),
 	genre_id integer not null references genres(id)
 	);
-    
 ------Home Work # 2
+drop table if exists departments cascade;
 create table if not exists departments (
 	id serial primary key,
 	name varchar(60) NOT NULL,
 	description text 
 	);
-
+drop table if exists employees cascade;
 create table if not exists employees (
 	id serial primary key,
 	name varchar(60) NOT NULL,
 	department_id integer not null references departments(id),
 	officer_id integer references employees
 	);
+	
