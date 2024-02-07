@@ -48,13 +48,11 @@ create table if not exists singersgenres (
 	genre_id integer not null references genres(id)
 	);
 ------Home Work # 2
-drop table if exists departments cascade;
 create table if not exists departments (
 	id serial primary key,
 	name varchar(60) NOT NULL,
 	description text 
 	);
-drop table if exists employees cascade;
 create table if not exists employees (
 	id serial primary key,
 	name varchar(60) NOT NULL,
