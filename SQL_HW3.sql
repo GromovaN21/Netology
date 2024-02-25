@@ -136,7 +136,7 @@ WHERE LENGTH(name)=LENGTH(replace(name, ' ', ''));
 -------5 Название треков, которые содержат слово «мой» или «my»
 
 SELECT name FROM songs
-WHERE LOWER(name) LIKE '%мой%' OR LOWER(name) LIKE 'my'
+WHERE LOWER(name) LIKE '%мой%' OR LOWER(name) LIKE '%my%';
 
 
 --------Задание 3 
