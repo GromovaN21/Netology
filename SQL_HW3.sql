@@ -1,0 +1,140 @@
+-----Home Work # 3
+DROP TABLE IF EXISTS collections CASCADE;
+
+create table if not exists collections (
+	id serial primary key,
+	name varchar(60) not null,
+	year integer not null
+	);
+	
+DROP TABLE IF EXISTS albums CASCADE;
+create table if not exists albums (
+	id serial primary key,
+	name varchar(60) not null,
+	year integer not null,
+	CHECK (CHAR_LENGTH(name) <= 60)
+	);
+	
+DROP TABLE IF EXISTS songs CASCADE;
+create table if not exists songs (
+	id serial primary key,
+	album_id INTEGER NOT NULL REFERENCES albums(id),
+	name varchar(60) not null,
+	duration integer not null,
+	CHECK (duration > 0),
+	CHECK (CHAR_LENGTH(name) <= 60)
+	);
+	
+DROP TABLE IF EXISTS singers CASCADE;
+create table if not exists singers (
+	id serial primary key,
+	name varchar(60) not null,
+	UNIQUE (name)
+	);
+
+DROP TABLE IF EXISTS genres CASCADE;
+create table if not exists genres (
+	id serial primary key,
+	name varchar(60) not null
+	);
+
+DROP TABLE IF EXISTS songscollections CASCADE;
+create table if not exists songscollections (
+	collection_id INTEGER NOT NULL REFERENCES collections(id),
+	song_id INTEGER NOT NULL REFERENCES songs(id)
+	);
+
+DROP TABLE IF EXISTS singersalbums CASCADE;
+create table if not exists singersalbums (
+	album_id INTEGER NOT NULL REFERENCES albums(id),
+	singer_id INTEGER NOT NULL REFERENCES singers(id)
+	);
+
+DROP TABLE IF EXISTS singersgenres CASCADE;
+create table if not exists singersgenres (
+	singer_id INTEGER NOT NULL REFERENCES singers(id),
+	genre_id integer not null references genres(id)
+	);
+
+INSERT INTO singers (id, name) VALUES 
+    (1, 'Исполнитель 1'),
+    (2, 'Исполнитель 2'),
+    (3, 'Исполнитель3'),
+    (4, 'Исполнитель4');
+	
+INSERT INTO genres (id, name) VALUES 
+    (1, 'Жанр 1'),
+    (2, 'Жанр 2'),
+    (3, 'Жанр 3');
+	
+INSERT INTO albums (id, name, year) VALUES 
+    (1, 'Альбом 1', '2000'),
+    (2, 'Альбом 2','2010'),
+    (3, 'Альбом 3', '2020');
+	
+INSERT INTO songs (id, album_id,  name , duration) VALUES 
+    (1, 1, 'Трек 1', '60'),
+    (2, 1, 'Трек 2', '90'),
+    (3, 2, 'Трек 3', '210'),
+    (4, 2, 'Трек 4', '300'),
+    (5, 3, 'МойТрек 5', '90'),
+    (6, 3, 'MyТрек 6', '150');
+	
+INSERT INTO collections (id, name, year) VALUES 
+    (1, 'Сборник 1', '2023'),
+    (2, 'Сборник 2', '2022'),
+    (3, 'Сборник 3', '2011'),
+    (4, 'Сборник 4', '2002');
+	
+select * from collections;
+	
+INSERT INTO songscollections(collection_id, song_id) VALUES
+	(1, 1),
+	(1, 2),
+	(2, 3),
+	(2, 4),
+	(3, 5),
+	(4, 5);
+
+INSERT INTO singersalbums(album_id, singer_id) VALUES
+	(1, 1),
+	(1, 2),
+	(1, 3),
+	(2, 2),
+	(2, 3),
+	(3, 2),
+	(3, 4);
+	
+INSERT INTO singersgenres(singer_id, genre_id) VALUES
+	(1, 1),
+	(2, 2),
+	(3, 3),
+	(4, 1),
+	(1, 2),
+	(2, 3);
+	
+------1. Название и продолжительность самого длительного трека.	
+SELECT name, duration FROM songs
+WHERE duration = (SELECT MAX(duration) FROM songs);
+
+-------2 Название треков, продолжительность которых не менее 3,5 минут.
+
+SELECT name, duration FROM songs
+WHERE duration > 210;
+
+
+-------3 Названия сборников, вышедших в период с 2018 по 2020 год включительно.
+SELECT name, year FROM collections
+WHERE 2018<= year AND year<= 2020;
+
+
+-------4 Исполнители, чьё имя состоит из одного слова.
+
+
+SELECT name FROM singers
+WHERE LENGTH(name)=LENGTH(replace(name, ' ', ''));
+
+-------5 Название треков, которые содержат слово «мой» или «my»
+
+SELECT name FROM songs
+WHERE LOWER(name) LIKE '%мой%' OR LOWER(name) LIKE 'my'
