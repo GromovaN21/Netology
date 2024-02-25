@@ -165,13 +165,16 @@ JOIN singersalbums sa ON sa.album_id = a.id
 JOIN singers s ON sa.singer_id = s.id
 WHERE a.year = '2020');
 
------5 Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).------CHECK
+-----5 Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами). 
 SELECT c.name, singers.name FROM songscollections sc
 LEFT JOIN collections c ON sc.collection_id=c.id
 LEFT JOIN songs s ON sc.song_id=s.id
 LEFT JOIN singersalbums sa ON sa.album_id=s.album_id
 LEFT JOIN singers ON singers.id=sa.singer_id 
-WHERE singers.name= 'Исполнитель 1';
+WHERE singers.name= 'Исполнитель 1'
+GROUP BY c.name,singers.name ;
+
+
 
 ----------Задание 4(необязательное)
 ----------1   Названия альбомов, в которых присутствуют исполнители более чем одного жанра.
