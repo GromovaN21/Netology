@@ -69,7 +69,7 @@ INSERT INTO genres (id, name) VALUES
 	
 INSERT INTO albums (id, name, year) VALUES 
     (1, 'Альбом 1', '2000'),
-    (2, 'Альбом 2','2010'),
+    (2, 'Альбом 2','2019'),
     (3, 'Альбом 3', '2020');
 	
 INSERT INTO songs (id, album_id,  name , duration) VALUES 
@@ -86,7 +86,6 @@ INSERT INTO collections (id, name, year) VALUES
     (3, 'Сборник 3', '2011'),
     (4, 'Сборник 4', '2002');
 	
-select * from collections;
 	
 INSERT INTO songscollections(collection_id, song_id) VALUES
 	(1, 1),
@@ -138,3 +137,69 @@ WHERE LENGTH(name)=LENGTH(replace(name, ' ', ''));
 
 SELECT name FROM songs
 WHERE LOWER(name) LIKE '%мой%' OR LOWER(name) LIKE 'my'
+
+
+--------Задание 3 
+--------1 Количество исполнителей в каждом жанре.
+SELECT sg.genre_id, COUNT(sg.singer_id) FROM singersgenres sg
+GROUP BY sg.genre_id
+ORDER BY sg.genre_id ASC;
+	
+	
+---------2Количество треков, вошедших в альбомы 2019–2020 годов.
+SELECT a.id, a.name, a.year, COUNT(s.id) FROM songs s
+LEFT JOIN albums a ON s.album_id= a.id
+WHERE a.year<=2020 AND a.year>=2019
+GROUP BY a.id;
+
+----------3Средняя продолжительность треков по каждому альбому.
+SELECT a.name, AVG(s.duration) FROM songs s
+LEFT JOIN albums a ON s.album_id= a.id
+GROUP BY a.id
+ORDER BY a.id ASC;
+
+--------4 Все исполнители, которые не выпустили альбомы в 2020 году.
+SELECT * FROM singers WHERE id not in (
+SELECT s.id from albums a
+JOIN singersalbums sa ON sa.album_id = a.id
+JOIN singers s ON sa.singer_id = s.id
+WHERE a.year = '2020');
+
+-----5 Названия сборников, в которых присутствует конкретный исполнитель (выберите его сами).------CHECK
+SELECT c.name, singers.name FROM songscollections sc
+LEFT JOIN collections c ON sc.collection_id=c.id
+LEFT JOIN songs s ON sc.song_id=s.id
+LEFT JOIN singersalbums sa ON sa.album_id=s.album_id
+LEFT JOIN singers ON singers.id=sa.singer_id 
+WHERE singers.name= 'Исполнитель 1';
+
+----------Задание 4(необязательное)
+----------1   Названия альбомов, в которых присутствуют исполнители более чем одного жанра.
+SELECT a.name, COUNT(g.name) FROM albums a 
+LEFT JOIN singersalbums sa ON sa.album_id = a.id
+LEFT JOIN singers ON singers.id = sa.singer_id
+LEFT JOIN singersgenres sg ON sg.singer_id=singers.id
+LEFT JOIN genres g ON sg.genre_id=g.id
+GROUP BY a.name
+HAVING COUNT(a.name) > 1;
+
+-----2. Наименования треков, которые не входят в сборники.
+SELECT * FROM songs
+LEFT JOIN songscollections sc ON songs.id= sc.song_id
+WHERE sc.collection_id is null;
+
+-----3 Исполнитель или исполнители, написавшие самый короткий по продолжительности трек, — теоретически таких треков может быть несколько.
+SELECT singers.name FROM songs
+LEFT JOIN albums ON albums.id=songs.album_id
+LEFT JOIN singersalbums sa ON albums.id=sa.album_id
+LEFT JOIN singers ON singers.id= sa.singer_id
+WHERE songs.duration = (SELECT MIN(songs.duration) FROM songs);
+
+-----4. Названия альбомов, содержащих наименьшее количество треков.
+SELECT albums.name FROM songs
+LEFT JOIN albums ON albums.id=songs.album_id
+LEFT JOIN singersalbums sa ON albums.id=sa.album_id
+LEFT JOIN singers ON singers.id= sa.singer_id
+GROUP BY albums.name
+ORDER BY COUNT(songs.id) ASC
+LIMIT 1; 
