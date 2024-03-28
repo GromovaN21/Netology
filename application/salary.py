@@ -1,3 +1,4 @@
 def calculate_salary(daily_fee):
-    monthly_salary= daily_fee*30
+    working_days = input('Введите число отработанных дней:')
+    monthly_salary= int(working_days)*daily_fee
     print(monthly_salary)
