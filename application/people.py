@@ -1,3 +1,4 @@
-def get_employees(employees, name):
-    name=input('Введите фамилию')
-    employees.append(name)
+def get_employees(list_employees, name):
+    name=input('Введите фамилию: ')
+    list_employees.append(name)
+    print(list_employees)
