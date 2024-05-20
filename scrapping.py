@@ -19,15 +19,10 @@ hh_request = requests.get(
 html_data = hh_request.text
 hh_soup = BeautifulSoup(html_data)
 
-hh_soup.fi
-                                                 
+                                                
 parsed_data = []
 
 list_vacancies = hh_soup.find(class_='vacancy-serp-content').find_all(class_='serp-item')
-
-# a = list_vacancies[0].select(".serp-item a.bloko-link.bloko-link_kind-secondary")
-
-# print(a[0].text)
 
 for hh_tag in list_vacancies:
   
@@ -38,34 +33,35 @@ for hh_tag in list_vacancies:
   company = ""
   company_tag = hh_tag.find('a', class_='bloko-link bloko-link_kind-secondary')
   if company_tag is None:
-    print("not found")
+    pass
   else:
-    print("found") 
     company = company_tag.text
+
   compensation_tag = header_tag.next_sibling.next_sibling.findChildren(class_="bloko-text" , recursive=True)[0]
   city_tag = hh_tag.find('span', recursive=True, class_='bloko-text',
                                 attrs={'data-qa': 'vacancy-serp__vacancy-address'})
-  description = hh_tag.find(class_='g-user-content')
 
 
   headers = header_tag.text.strip()
   hh_link = link_tag['href']
-
   
-  parsed_data.append( {
+  vacancy_request = requests.get(  hh_link, headers=get_headers())
+  vacancy_data = vacancy_request.text
+  vacancy_soup = BeautifulSoup(vacancy_data)
+  vacancy_description = vacancy_soup.find(class_='g-user-content')
+
+  search_ = r'.*((D|d)jango)|.*((F|f)lask).*'
+  if re.search(search_, vacancy_description.text):
+     parsed_data.append( {
       "header" : headers,
       "link" : hh_link,
-      "company" : company,
-      "compensation" : compensation_tag.text, 
-      "city": city_tag.text, 
-      "description" : description,
+      "company" : company.replace('\xa0', ' '),
+      "compensation" : compensation_tag.text.replace('\u2009', '').replace('\xa0', ' ').replace('\u202f', ' '), 
+      "city": city_tag.text.replace('\xa0', ''), 
   })
 
-# with open('hh.json', 'w', encoding='utf-8') as file:
-#     json.dump(parsed_data, file, ensure_ascii=False, indent=4)
+with open('hh.json', 'w', encoding='utf-8') as file:
+     json.dump(parsed_data, file, ensure_ascii=False, indent=4)
 
-# if __name__ == '__main__':
 
 print(parsed_data)
- #print(hh_tag)
- #print(vacancy_soup)

@@ -1,162 +1,51 @@
 [
     {
-        "header": "Python Data Engineer",
-        "link": "https://spb.hh.ru/vacancy/99630391?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Python-разработчик",
-        "link": "https://spb.hh.ru/vacancy/99596770?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
         "header": "Python-разработчик Middle",
         "link": "https://spb.hh.ru/vacancy/99625529?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "ИП Гапула Вера Александровна",
+        "compensation": "до 150 000 ₽ на руки",
+        "city": "Москва"
     },
     {
         "header": "Программист Python",
         "link": "https://spb.hh.ru/vacancy/99283741?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "ООО СтратоСфера",
+        "compensation": "100 000 – 100 000 ₽ до вычета налогов",
+        "city": "Зеленоград"
     },
     {
         "header": "Python developer",
         "link": "https://spb.hh.ru/vacancy/98924013?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Аналитик (Python)",
-        "link": "https://spb.hh.ru/vacancy/99563831?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Программист - разработчик Python",
-        "link": "https://spb.hh.ru/vacancy/97746667?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "MIA Dev",
+        "compensation": "от 250 000 ₽ на руки",
+        "city": "Москва"
     },
     {
         "header": "Python developer SMS",
         "link": "https://spb.hh.ru/vacancy/99311948?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Senior Python Developer",
-        "link": "https://spb.hh.ru/vacancy/95316210?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "Digital Metrics Limited",
+        "compensation": "2 200 – 2 800 $ на руки",
+        "city": "Москва"
     },
     {
         "header": "Python Backend разработчик",
         "link": "https://spb.hh.ru/vacancy/99609038?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "QA Auto Python",
-        "link": "https://spb.hh.ru/vacancy/93065945?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "ЭдПро",
+        "compensation": "от 120 000 ₽ на руки",
+        "city": "Санкт-Петербург"
     },
     {
         "header": "Разработчик Python",
         "link": "https://spb.hh.ru/vacancy/99224871?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Middle Python разработчик",
-        "link": "https://spb.hh.ru/vacancy/94833989?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Python developer (Senior)",
-        "link": "https://spb.hh.ru/vacancy/99593163?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Senior python разработчик",
-        "link": "https://spb.hh.ru/vacancy/95997678?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "Институт Географических Информационных Технологий",
+        "compensation": "от 200 000 ₽ на руки",
+        "city": "Москва"
     },
     {
         "header": "Разработчик Python (Middle)",
         "link": "https://spb.hh.ru/vacancy/98619211?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Программист-разработчик Python (PyQt)",
-        "link": "https://spb.hh.ru/vacancy/99617670?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Senior Python Developer",
-        "link": "https://spb.hh.ru/vacancy/97994983?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Senior/Expert Python разработчик",
-        "link": "https://spb.hh.ru/vacancy/82143109?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
-    },
-    {
-        "header": "Разработчик/аналитик Python/SQL",
-        "link": "https://spb.hh.ru/vacancy/98014014?query=python&hhtmFrom=vacancy_search_list",
-        "company": null,
-        "compensation": null,
-        "city": null,
-        "description": null
+        "company": "ООО Единая Информационная Система ЖКХ",
+        "compensation": "90 000 – 150 000 ₽ на руки",
+        "city": "Санкт-Петербург"
     }
 ]
