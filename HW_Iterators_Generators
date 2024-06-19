@@ -1,0 +1,41 @@
+input = [
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f','h',False],
+    [1, 2, None],
+]
+
+class FlatIterator:
+    def __init__(self, list_of_list):
+        self.list_of_list = list_of_list
+        self.index = -1
+        self.item = 0
+        self.len_list = len(self.list_of_list)
+
+    def __iter__(self):
+        self.index += 1
+        self.item = 0
+        return self
+
+    def __next__(self):
+        while self.index - self.len_list and self.item == len(self.list_of_list[self.index]):
+          iter(self)
+        if self.index == self.len_list:
+          raise StopIteration
+        self.item += 1
+        return self.list_of_list[self.index][self.item - 1]
+
+
+
+def flat_generator(list_of_lists):
+
+    for i in range(len(list_of_lists)):
+        for j in range(len(list_of_lists[i])):
+            yield list_of_lists[i][j]
+
+
+if __name__ == '__main__':
+  flat_list = [item for item in FlatIterator(input)]
+  flat_list_2 =  [item for item in flat_generator(input)]
+  print(flat_list)
+  print(flat_list_2)
+
